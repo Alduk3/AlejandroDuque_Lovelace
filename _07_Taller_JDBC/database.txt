@@ -1,0 +1,25 @@
+-- DB BookStore
+
+CREATE DATABASE book_store;
+
+USE bookstore;
+
+CREATE TABLE autor(
+
+    id int AUTO_INCREMENT PRIMARY KEY,
+    name varchar(40) NOT NULL,
+    nationality varchar(40) NOT NULL
+);
+
+CREATE TABLE libro(
+
+    id int AUTO_INCREMENT PRIMARY KEY,
+    title varchar(40) NOT NULL,
+    year_publication int NOT NULL,
+    price boolean NOT NULL,
+    id_autor int NOT NULL,
+    CONSTRAINT fk_id_autor FOREING KEY (id_autor)
+    REFERENCES autor(id)
+
+);
+
