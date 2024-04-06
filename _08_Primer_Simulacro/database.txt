@@ -1,0 +1,53 @@
+CREATE DATABASE hospital;
+
+USE hospital;
+
+CREATE TABLE specialty(
+    id_specialty INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40) NOT NULL,
+    description TEXT 
+);
+
+CREATE TABLE doctor(
+    id_doctor INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40) NOT NULL,
+    last_name VARCHAR(40) NOT NULL,
+    id_specialty INT NOT NULL,
+    CONSTRAINT fk_id_specialty FOREIGN KEY (id_specialty) REFERENCES specialty( id_specialty) on delete cascade
+);
+
+CREATE TABLE patient(
+    id_patient INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40) NOT NULL,
+    last_name VARCHAR(40) NOT NULL,
+    date_birth DATE NOT NULL,
+    identification_document VARCHAR(40)
+);
+
+CREATE TABLE appointment(
+    id_appointment INT PRIMARY KEY AUTO_INCREMENT,
+    id_patient INT NOT NULL,
+    id_doctor INT NOT NULL,
+    appointment_date DATE NOT NULL,
+    appointment_time TIME NOT NULL,
+    reason TEXT,
+
+    CONSTRAINT fk_id_patient FOREIGN KEY (id_patient) REFERENCES patient(id_patient) on delete cascade,
+    CONSTRAINT fk_id_doctor FOREIGN KEY (id_doctor) REFERENCES doctor(id_doctor)
+    
+);
+
+SELECT * FROM specialty;
+SELECT * FROM doctor;
+SELECT * FROM patient;
+SELECT * FROM appointment;
+
+INSERT INTO specialty(name, description) VALUES ("Pediatra","Especialista en niños");
+INSERT INTO doctor(name, last_name, id_specialty) VALUES ("Nicole", "Rios", "1");
+INSERT INTO patient(name, last_name, date_birth, identification_document) VALUES ("Antonela","Duque", "2030-08-16","00000000-00");
+INSERT INTO appointment(id_patient, id_doctor, appointment_date, appointment_time, reason) VALUES (1,1,"2030-12-06","08:00:00","Revisión primeros meses");
+
+UPDATE specialty SET name = "Pediatria" WHERE id_specialty = 1;
+UPDATE patient SET name = ?, last_name = ?, date_birth = ?, identification_document = ? WHERE id_patient = ?;
+
+
