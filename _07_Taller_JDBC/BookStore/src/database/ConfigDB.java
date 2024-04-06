@@ -15,7 +15,7 @@ public class ConfigDB {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Connection variables
-            String url = "jdbc:mysql://localhost:3306/book_store";
+            String url = "jdbc:mysql://localhost:3306/bookstore";
             String user = "root";
             String password = "";
 

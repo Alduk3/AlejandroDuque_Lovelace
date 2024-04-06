@@ -1,25 +1,25 @@
 package entity;
 
 public class Author {
-    int id;
+    int id_author;
     String name;
     String nationality;
 
     public Author(){
     }
 
-    public Author(int id, String name, String nationality) {
-        this.id = id;
+    public Author(int id_author, String name, String nationality) {
+        this.id_author = id_author;
         this.name = name;
         this.nationality = nationality;
     }
 
-    public int getId() {
-        return id;
+    public int getId_author() {
+        return id_author;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_author(int id_author) {
+        this.id_author = id_author;
     }
 
     public String getName() {
@@ -41,7 +41,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
+                "id_author=" + id_author +
                 ", name='" + name + '\'' +
                 ", nationality='" + nationality + '\'' +
                 '}';
