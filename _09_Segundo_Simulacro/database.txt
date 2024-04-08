@@ -1,0 +1,56 @@
+-- Airline .. 
+
+DROP DATABASE airline;
+
+CREATE DATABASE airline;
+
+USE airline;
+
+CREATE TABLE airplane (
+    id_airplane INT PRIMARY KEY AUTO_INCREMENT,
+    model VARCHAR(40) NOT NULL,
+    capacity INT NOT NULL
+);
+CREATE TABLE flight (
+    id_flight INT PRIMARY KEY AUTO_INCREMENT,
+    destiny VARCHAR (40) NOT NULL,
+    departure_date DATE NOT NULL,
+    departure_time TIME NOT NULL,
+    id_airplane INT NOT NULL,
+    CONSTRAINT fk_id_airplane FOREIGN KEY (id_airplane) REFERENCES airplane(id_airplane)
+);
+CREATE TABLE passenger (
+    id_passenger INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40) NOT NULL,
+    last_name VARCHAR (40) NOT NULL,
+    identification_document VARCHAR (40) NOT NULL
+);
+CREATE TABLE reservation (
+    id_reservation INT PRIMARY KEY AUTO_INCREMENT,
+    id_passenger INT NOT NULL,
+    id_flight INT NOT NULL,
+    reservation_date DATE NOT NULL,
+    seat VARCHAR(40) NOT NULL,
+    CONSTRAINT fk_id_passenger FOREIGN KEY (id_passenger) REFERENCES passenger(id_passenger) on delete cascade,
+    CONSTRAINT fk_id_flight FOREIGN KEY (id_flight) REFERENCES flight(id_flight)
+);
+
+SELECT * FROM airplane;
+SELECT * FROM flight;
+SELECT * FROM passenger;
+SELECT * FROM reservation;
+
+INSERT INTO airplane(model, capacity) VALUES ("Cessna turbo skylane", 4);
+INSERT INTO flight(destiny, departure_date, departure_time, id_airplane) VALUES ("Miami", "2024-04-06", "05:00:00",1);
+INSERT INTO passenger(name, last_name, identification_document) VALUES ("Nicole", "Rios", "1058741563");
+INSERT INTO reservation(id_passenger, id_flight, reservation_date, seat) VALUES (1,1, "2024-04-04", "A1");
+
+SELECT * FROM flight WHERE destiny = "miami";
+SELECT * FROM reservation WHERE id_flight = 1;
+SELECT * FROM passenger WHERE name LIKE "%nic%";
+
+SELECT capacity FROM airplane WHERE id_airplane = 1;
+
+SELECT COUNT(*) from reservation where id_flight = 3;
+
+SELECT COUNT(*) from reservation where id_flight = 1 AND seat = "aas1";

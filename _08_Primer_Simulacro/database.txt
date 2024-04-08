@@ -50,4 +50,3 @@ INSERT INTO appointment(id_patient, id_doctor, appointment_date, appointment_tim
 UPDATE specialty SET name = "Pediatria" WHERE id_specialty = 1;
 UPDATE patient SET name = ?, last_name = ?, date_birth = ?, identification_document = ? WHERE id_patient = ?;
 
-
